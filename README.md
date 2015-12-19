@@ -10,6 +10,7 @@
    Fantastic tutorial fom Tom Boutell. This tutorial offers an interesting perspective about making changes to Google Calendar DOM on the <bolb>fly</bold>. Tom takes it a step further with audio and animation! [Check out the code on GitHub](https://github.com/harishvc/chrome-extension-examples/tree/master/today).
 
 ##References
+* [Chrome extensions overview](https://developer.chrome.com/extensions/overview)
 * [Debugging apps and extensions for the Google Chrome Web Store](https://samdutton.wordpress.com/2010/12/16/debugging-google-chrome-extensions/)
 * [Chrome Extension that modifies Google Calendar to visualize daylight hours in your timezone](https://github.com/masyukun/google-calendar-daylight-extension)
 
