@@ -1,11 +1,5 @@
 var match = 'https://calendar.google.com/calendar/render'
 
-//var id = setInterval('AreYouAround();', 10000); //30 seconds
-//chrome.alarms.create("My First Alarm",{delayInMinutes:0.25,periodInMinutes:0.125 });
-//chrome.alarms.get("My First Alarm",function(AreYouAround){});
-
-
-chrome.alarms.onAlarm.addListener(function (){ AreYouAround();});
 
 chrome.runtime.onInstalled.addListener(
   function () {
@@ -32,22 +26,12 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
     });
 });
 
-//http://stackoverflow.com/questions/18422987/detect-if-chrome-extension-content-script-has-been-injected-content-script-inc
+chrome.alarms.onAlarm.addListener(function (){ AreYouAround();});
 function AreYouAround() {
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {action: "checking"}, function(response) {
-        if (response) {
-            //chrome.tabs.sendMessage(tabs[0].id, {action: "console", consolelog: "Yah!"}, function(response){});
-            chrome.tabs.sendMessage(tabs[0].id, {action: "start"}, function(response) {}); 
-        }
-        //does not get invoked!!!
-        else {
-             //chrome.tabs.sendMessage(tabs[0].id, {action: "console", consolelog: "starting ..."}, function(response){});
-             chrome.tabs.sendMessage(tabs[0].id, {action: "start"}, function(response) {}); 
-        }
-    });
- });
-}
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {action: "checking"}, function(response) {});
+  });
+};
 
 
 //References

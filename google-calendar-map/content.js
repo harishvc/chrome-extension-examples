@@ -26,8 +26,13 @@ chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
   };
  //Is the extension working? polling from backend
  if (msg.action == 'checking') {
-    //console.log("backend checking status ....");
-    sendResponse({message: "alive"});
+    console.log("backend checking status ....");
+    var t1 = document.getElementsByClassName('lv-location');
+    var t2 = document.getElementsByClassName('calendar-clicksaver-maplink');
+    if (t1.length != t2.length){
+      //console.log("act now!!!!")
+      Start();
+    }
   };
 });
 
@@ -36,16 +41,14 @@ function Start(){
     var today = document.getElementsByClassName('lv-location');
 		for (i=0;i<today.length;i++) {
       var mapDiv = document.createElement("span");
-      var t1 = "myclass";
-      var t2 = t1.concat(i);
-      var t3 = "#" + t2
-      mapDiv.setAttribute('id', t2); 
+      mapDiv.setAttribute('class', "calendar-clicksaver-maplink"); 
       var a = document.createElement('a');
       var b = today[i].innerText;
       b = b.replace(/^\s-\s/,''); 
       a.href =  'https://www.google.com/maps/place/' + b;
       a.innerHTML = b;
       mapDiv.appendChild(a);
+      //Replace all existing content
       today[i].innerText = " - ";     
       today[i].appendChild(mapDiv);
     }
