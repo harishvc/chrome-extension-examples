@@ -15,21 +15,25 @@ window.addEventListener('resize', function() {
 
 //Messages from backend
 chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
-  //wait for content to get loaded before processing
+  //tab loaded
   if (msg.action == 'start') {
       	//console.log("tabs loaded ....");
         Start();
   }
-  //messages from backend - console.log messages     
+  //console.log message from backend     
   if (msg.action == 'console') {
     console.log(msg.consolelog);
+  };
+ //Is the extension working? polling from backend
+ if (msg.action == 'checking') {
+    //console.log("backend checking status ....");
+    sendResponse({message: "alive"});
   };
 });
 
 
 function Start(){
     var today = document.getElementsByClassName('lv-location');
-		//console.log("#locations found=", today.length);
 		for (i=0;i<today.length;i++) {
       var mapDiv = document.createElement("span");
       var t1 = "myclass";
