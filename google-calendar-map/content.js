@@ -1,8 +1,10 @@
+var DEBUG=false  //true or false
+
 //Handle windows resize
 //http://stackoverflow.com/questions/13141072/how-to-get-notified-on-window-resize-in-chrome-browser
 var timeoutId = 0;
 window.addEventListener('resize', function() {
-  //console.log("browser resizing ......");
+  if (DEBUG === true) { console.log("browser resizing ......");}
   if (timeoutId) {
     clearTimeout(timeoutId);
   }
@@ -13,30 +15,31 @@ window.addEventListener('resize', function() {
 }, false);
 
 
+
 //Messages from backend
 chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
   //tab loaded
   if (msg.action == 'start') {
-      	//console.log("tabs loaded ....");
+      	if (DEBUG === true) { console.log("tab loaded");}
         Start();
   }
   //console.log message from backend     
   if (msg.action == 'console') {
-    console.log(msg.consolelog);
-  };
+    if (DEBUG === true) {console.log(msg.consolelog);}
+  }
  //Is the extension working? polling from backend
  if (msg.action == 'checking') {
-    console.log("backend checking status ....");
     var t1 = document.getElementsByClassName('lv-location');
     var t2 = document.getElementsByClassName('calendar-clicksaver-maplink');
+    if (DEBUG === true) { console.log(msg.now, ": checking....");}
     if (t1.length != t2.length){
-      //console.log("act now!!!!")
+      if (DEBUG === true) { console.log("links missing ... updating DOM");}
       Start();
     }
-  };
+  }
 });
 
-
+//hyperlink location!
 function Start(){
     var today = document.getElementsByClassName('lv-location');
 		for (i=0;i<today.length;i++) {

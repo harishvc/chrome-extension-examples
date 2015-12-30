@@ -1,9 +1,8 @@
 var match = 'https://calendar.google.com/calendar/render'
 
-
 chrome.runtime.onInstalled.addListener(
   function () {
-    chrome.alarms.create("Test",{when: Date.now() + 10*1000,periodInMinutes: 20});
+    chrome.alarms.create("gcgmalarm",{when: Date.now() + 10*1000,periodInMinutes: 2});
   });
 
 //All content loaded in the Google Calendar browser tab!
@@ -26,10 +25,28 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
     });
 });
 
+
+//http://stackoverflow.com/questions/33135273/how-to-set-chrome-alarms-getall-callback-to-a-variable
+function alarmcount(callback) {
+    var count; 
+    chrome.alarms.getAll(function(alarms) { callback(alarms.length) }); 
+}
+
+function myDate() {
+  var now = new Date();
+  var now2 = now.getMonth()+1 + "/" + now.getDate() + "/" + now.getFullYear() + " " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+  return now2;  
+}
+
 chrome.alarms.onAlarm.addListener(function (){ AreYouAround();});
 function AreYouAround() {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {action: "checking"}, function(response) {});
+    chrome.tabs.sendMessage(tabs[0].id, {action: "checking", now:myDate()}, function(response) {});
+    alarmcount(function(count) { 
+      var numAlarms = count;
+      var msg = "alarm count=" + numAlarms;
+      chrome.tabs.sendMessage(tabs[0].id, {action: "console",consolelog:msg}, function(response) {}); 
+    });
   });
 };
 
