@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "MapIt for Google Calendar",
-  "version": "0.1",
+  "version": "1.4",
    "content_scripts": [
    { 
     "matches": ["*://calendar.google.com/calendar/render*"],
