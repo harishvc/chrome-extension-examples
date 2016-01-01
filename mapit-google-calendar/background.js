@@ -38,15 +38,17 @@ function myDate() {
   return now2;  
 }
 
+//Periodically check extension
 chrome.alarms.onAlarm.addListener(function (){ AreYouAround();});
 function AreYouAround() {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {action: "checking", now:myDate()}, function(response) {});
-    alarmcount(function(count) { 
-      var numAlarms = count;
-      var msg = "alarm count=" + numAlarms;
-      chrome.tabs.sendMessage(tabs[0].id, {action: "console",consolelog:msg}, function(response) {}); 
-    });
+    //Alarm count
+    //alarmcount(function(count) { 
+      //var numAlarms = count;
+      //var msg = "alarm count=" + numAlarms;
+      //chrome.tabs.sendMessage(tabs[0].id, {action: "console",consolelog:msg}, function(response) {}); 
+    //});
   });
 };
 
@@ -54,3 +56,5 @@ function AreYouAround() {
 //References
 //1. https://developer.chrome.com/extensions/event_pages
 //2. https://books.google.com/books?id=4SHbBQAAQBAJ&lpg=PA189&ots=UvMsQ9HEeK&dq=chrome.runtime.onInstalled.addListener%20chrome.alarms.create&pg=PA189#v=onepage&q=chrome.runtime.onInstalled.addListener%20chrome.alarms.create&f=false
+//3. https://developer.chrome.com/webstore/branding
+//4. https://developer.chrome.com/webstore/images

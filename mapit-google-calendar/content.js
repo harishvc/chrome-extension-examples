@@ -39,7 +39,7 @@ chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
   }
 });
 
-//hyperlink location!
+//Automatically wrap event location with a hyperlink to Google Maps
 function Start(){
     var today = document.getElementsByClassName('lv-location');
 		for (i=0;i<today.length;i++) {
@@ -47,8 +47,12 @@ function Start(){
       mapDiv.setAttribute('class', "calendar-clicksaver-maplink"); 
       var a = document.createElement('a');
       var b = today[i].innerText;
-      b = b.replace(/^\s-\s/,''); 
-      a.href =  'https://www.google.com/maps/place/' + b;
+      b = b.replace(/^\s-\s/,'');
+      //http://stackoverflow.com/questions/332872/encode-url-in-javascript
+      //encoding URL
+      var eb =  encodeURIComponent(b).replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/%20/g, ' ');; 
+      var c = 'https://maps.google.com/maps?q=' + eb + "&source=calendar"; 
+      a.href =  c;
       a.innerHTML = b;
       mapDiv.appendChild(a);
       //Replace all existing content
