@@ -9,8 +9,9 @@
 * [Tom Boutell's extension to Google Calendar](http://justjs.com/posts/chrome-extensions-how-to-enhance-google-calendar-and-other-web-apps-you-didn-t-write) :thumbsup: :notes: :boom:  
    Fantastic tutorial fom Tom Boutell. This tutorial offers an interesting perspective about making changes to Google Calendar DOM on the <bolb>fly</bold>. Tom takes it a step further with audio and animation! [Check out the code on GitHub](https://github.com/harishvc/chrome-extension-examples/tree/master/today).
 
-* [MapIt for Google Calendar](https://github.com/harishvc/chrome-extension-examples/tree/master/mapit-google-calendar) :boom: :thumbsup:   
-  Automatically wrap your event location (when viewed in Agenda view) with a Google Map link and save a click!
+* [MapIt for Google Calendar](http://harishvc.com/2015/12/29/mapit-for-google-calendar/) :boom: :thumbsup:   
+  Automatically wrap your event location (when viewed in Agenda view) with a Google Map link and save a click! Deep dive into developing a Chrome extension for Google Calendar. [Check out the code on GitHub](https://github.com/harishvc/chrome-extension-examples/tree/master/mapit-google-calendar).
+
 
 
 ##References
